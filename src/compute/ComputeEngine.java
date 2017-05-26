@@ -16,8 +16,12 @@ public class ComputeEngine implements Compute {
     }
 
     public static void main(String[] args) {
+    	if(args.length < 1){
+    		System.out.println("Usage: java ComputeEngine [path of security.policy]");
+    	}
+    	String policy = args[0];
         if (System.getSecurityManager() == null) {
-            System.setProperty("java.security.policy", "file:/home/josh/workspace/DistributedLib/security.policy");
+            System.setProperty("java.security.policy", policy);
             System.setSecurityManager(new RMISecurityManager());
         }
         try {
